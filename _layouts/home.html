@@ -15,7 +15,8 @@
 
     <div class="initial-content">
       <div id="main" role="main">
-        <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+        <h1 id="page-title" class="page__title p-name" itemprop="headline">Soraphol Damrongpiriyapong</h1>
+        
       </div>
     </div>
 
@@ -36,8 +37,6 @@
 
   </body>
 </html>
-
-{{ content }}
 
 <!-- {% if paginator %}
   {% assign posts = paginator.posts %}
