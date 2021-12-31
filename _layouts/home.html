@@ -14,7 +14,9 @@
     {% include_cached masthead.html %}
 
     <div class="initial-content">
-      <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+      <div id="main" role="main">
+        <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+      </div>
     </div>
 
     {% if site.search == true %}
