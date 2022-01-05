@@ -3,7 +3,16 @@
 
 @charset "utf-8";
 
-$background-color: #FAF9F6;
+$blue-steel: #475c70;
+
+$primary-color: #ffffff;
+$background-color: $blue-steel;
+$text-color: #ffffff;
+$masthead-link-color: #ffffff;
+
+$link-color: #ffffff;
+
+$footer-background-color: $blue-steel;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
