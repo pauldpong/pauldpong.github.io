@@ -4,18 +4,17 @@
 @charset "utf-8";
 
 $blue-steel: #475c70;
-
 $primary-color: #ffffff;
 $background-color: $blue-steel;
 $text-color: #ffffff;
 $masthead-link-color: #ffffff;
-
 $link-color: #ffffff;
-
+$code-background-color: #2b333a;
 $footer-background-color: $blue-steel;
+$sans-serif: "Spline Sans", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
+  "Helvetica Neue", "Lucida Grande", Arial, sans-serif !default;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-@import "custom/variables";
 @import "custom/buttons";
