@@ -4,7 +4,7 @@ import Retrivers from "posts/retrievers";
 export default function Recipe({ recipes }) {
 
   const a = recipes.map(recipe =>
-    <Link href={`/recipes/${recipe.slug}`}
+    <Link key={recipe.slug} href={`/recipes/${recipe.slug}`}
       >{recipe.title}</Link>
   )
 
