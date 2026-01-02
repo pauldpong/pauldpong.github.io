@@ -1,6 +1,18 @@
 import '@styles/globals.css'
 import type { AppProps } from 'next/app'
- 
+
+import { Lexend } from 'next/font/google'
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  weight: '300',
+  variable: '--font-lexend',
+})
+
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <main className={`${lexend.variable}`}>
+      <Component {...pageProps} />
+    </main>
+  )
 }
