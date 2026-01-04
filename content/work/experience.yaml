@@ -1,5 +1,5 @@
 - employer: Google
-  date: June 2022 - Present
+  tenure: June 2022 - Present
   role: Software Engineer
   description: |
     Building System Experiences for <a href="https://android-developers.googleblog.com/2025/12/build-for-ai-glasses-with-android-xr.html">AR Glasses</a>.
@@ -9,13 +9,13 @@
     Built app launcher experience on <a href="https://www.android.com/xr/">Android XR</a>.
     Finetuned Gemini Nano models to develop custom intent detection and slot filling models to spearhead and prototype <a href="https://store.google.com/intl/en/ideas/articles/magic-cue/">'Magic Cue'</a>, which launched with the Pixel 10.
 - employer: Red Hat
-  date: May 2020 - August 2021
+  tenure: May 2020 - August 2021
   role: Software Engineering Intern
   description: |
     <a href="https://github.com/eclipse-platform/eclipse.platform.swt/commits?author=pauldpong">Maintained</a> the Eclipse Platform Standard Widget Toolkit (SWT) framework. 
     Contributed to porting SWT from GTK3 to GTK4.
 - employer: Dot Health
-  date: |
+  tenure: |
     Summer 2019
     Summer 2018
   role: Software Developer Intern
