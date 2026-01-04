@@ -2,5 +2,5 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --font-sans: var(--font-lexend)
+  --font-serif: var(--font-instrument-serif)
 }
