@@ -1,15 +1,15 @@
 import Header from "components/common/Header";
 import Head from "next/head";
 
-export default function Work() {
+export default function Notes() {
   return (
     <div>
       <Head>
-        <title>Paul&apos;s Travels</title>
+        <title>Paul&apos;s Notes</title>
       </Head>
       <div className="h-screen w-full md:w-3/4 xl:w-1/2 mx-auto p-5 md:p-15 xl:p-20">
         <div className="grid grid-cols-1 gap-1">
-          <Header headerTitle="PAUL'S TRAVELS" />
+          <Header headerTitle="PAUL'S NOTES" />
           <div className="font-sans">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
