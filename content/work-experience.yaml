@@ -3,19 +3,19 @@
   date: June 2022 - Present
   role: Software Engineer
   description: |
-    Building System Experiences for AR Glasses
+    Building System Experiences for <a href="https://android-developers.googleblog.com/2025/12/build-for-ai-glasses-with-android-xr.html">AR Glasses</a>.
 
     Previously:
-    Contributed to Jetpack Compose to natively support touchpad input on Glasses
-    Built app launcher experience on Android XR 
-    Finetuned Gemini Nano models to develop custom intent detection and slot filling models to  spearhead and prototype 'Magic Cue', which launched with the Pixel 10
+    <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/input/indirect/IndirectPointerEvent">Contributed</a> to Jetpack Compose to natively support touchpad input on Glasses.
+    Built app launcher experience on <a href="https://www.android.com/xr/">Android XR</a>.
+    Finetuned Gemini Nano models to develop custom intent detection and slot filling models to spearhead and prototype <a href="https://store.google.com/intl/en/ideas/articles/magic-cue/">'Magic Cue'</a>, which launched with the Pixel 10.
 - 
   employer: Red Hat
   date: May 2020 - August 2021
   role: Software Engineering Intern
   description: |
-    Maintained the Eclipse Platform Standard Widget Toolkit (SWT) framework. 
-    Contributed to porting SWT from GTK3 to GTK4
+    <a href="https://github.com/eclipse-platform/eclipse.platform.swt/commits?author=pauldpong">Maintained</a> the Eclipse Platform Standard Widget Toolkit (SWT) framework. 
+    Contributed to porting SWT from GTK3 to GTK4.
 -
   employer: Dot Health
   date: |
@@ -23,5 +23,4 @@
     Summer 2018
   role: Software Developer Intern
   description: |
-    Maintained the Eclipse Platform Standard Widget Toolkit (SWT) framework. 
-    Contributed to porting SWT from GTK3 to GTK4
+    Worked on the mobile app for a startup focused on developing a comprehensive personal health platform.
