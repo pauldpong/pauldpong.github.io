@@ -6,7 +6,7 @@ import { Instrument_Serif, Lexend } from 'next/font/google'
 const instrument_serif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
-  variable: '--instrument-serif',
+  variable: '--font-instrument-serif',
 })
 
 const lexend = Lexend({
@@ -17,7 +17,7 @@ const lexend = Lexend({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${instrument_serif.variable} ${lexend.variable}`}>
+    <main className={`${instrument_serif.variable} ${lexend.variable} font-serif`}>
       <Component {...pageProps} />
     </main>
   )
