@@ -3,4 +3,5 @@
 
 @theme inline {
   --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-noto-sans);
 }

@@ -1,7 +1,7 @@
 import "@styles/globals.css";
 import type { AppProps } from "next/app";
 
-import { Instrument_Serif, Lexend } from "next/font/google";
+import { Instrument_Serif, Noto_Sans } from "next/font/google";
 
 const instrument_serif = Instrument_Serif({
   subsets: ["latin"],
@@ -9,16 +9,15 @@ const instrument_serif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-const lexend = Lexend({
+const noto_sans = Noto_Sans({
   subsets: ["latin"],
-  weight: "300",
-  variable: "--font-lexend",
+  variable: "--font-noto-sans",
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main
-      className={`${instrument_serif.variable} ${lexend.variable} font-serif`}
+      className={`${instrument_serif.variable} ${noto_sans.variable} font-serif`}
     >
       <Component {...pageProps} />
     </main>
