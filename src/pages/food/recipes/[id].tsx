@@ -9,8 +9,8 @@ export default function Recipe({ matterResult }) {
 
   return (
     <div>
-      <article className="prose font-[Instrument_Serif]">
-        <Markdown className="text-white">{matterResult}</Markdown>
+      <article className="prose font-sans">
+        <Markdown>{matterResult}</Markdown>
       </article>
     </div>
   );
