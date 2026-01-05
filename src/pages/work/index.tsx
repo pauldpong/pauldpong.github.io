@@ -1,4 +1,5 @@
 import Header from "components/common/Header";
+import Scaffold from "components/common/Scaffold";
 import Head from "next/head";
 import type { GetStaticProps } from "next";
 import Retrivers from "posts/retrievers";
@@ -14,7 +15,7 @@ export default function Work({ experience, education }: WorkPageProps) {
       <Head>
         <title>Paul&apos;s Work</title>
       </Head>
-      <div className="h-screen w-full md:w-3/4 xl:w-1/2 mx-auto p-5 md:p-15 xl:p-20">
+      <Scaffold>
         <div className="grid grid-cols-1 gap-1">
           <Header headerTitle="PAUL'S WORK" />
           <p className="font-sans mb-10">
@@ -39,7 +40,7 @@ export default function Work({ experience, education }: WorkPageProps) {
             ))}
           </div>
         </div>
-      </div>
+      </Scaffold>
     </div>
   );
 }

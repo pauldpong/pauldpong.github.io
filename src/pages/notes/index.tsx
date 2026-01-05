@@ -1,4 +1,5 @@
 import Header from "components/common/Header";
+import Scaffold from "components/common/Scaffold";
 import Head from "next/head";
 
 export default function Notes() {
@@ -7,7 +8,7 @@ export default function Notes() {
       <Head>
         <title>Paul&apos;s Notes</title>
       </Head>
-      <div className="h-screen w-full md:w-3/4 xl:w-1/2 mx-auto p-5 md:p-15 xl:p-20">
+      <Scaffold>
         <div className="grid grid-cols-1 gap-1">
           <Header headerTitle="PAUL'S NOTES" />
           <div className="font-sans">
@@ -20,7 +21,7 @@ export default function Notes() {
             culpa qui officia deserunt mollit anim id est laborum.
           </div>
         </div>
-      </div>
+      </Scaffold>
     </div>
   );
 }
