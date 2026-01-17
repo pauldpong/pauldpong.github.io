@@ -2,7 +2,8 @@ import Header from "components/common/Header";
 import Scaffold from "components/common/Scaffold";
 import Head from "next/head";
 import type { GetStaticProps } from "next";
-import Retrivers from "posts/retrievers";
+import { parse } from "yaml";
+import { getFileContent } from "utils/file-utils";
 
 interface WorkPageProps {
   experience: WorkExperienceProps[];
@@ -18,7 +19,7 @@ export default function Work({ experience, education }: WorkPageProps) {
       <Scaffold>
         <div className="grid grid-cols-1 gap-1">
           <Header headerTitle="PAUL'S WORK" />
-          <p className="font-sans mb-10">
+          <p className="mb-10">
             Brief overview of my career and education background. You can view
             my full resume{" "}
             <a className="underline" href="/files/resume-july-2025.pdf">
@@ -46,11 +47,11 @@ export default function Work({ experience, education }: WorkPageProps) {
 }
 
 export const getStaticProps: GetStaticProps<WorkPageProps> = async () => {
-  const experience: WorkExperienceProps[] = Retrivers.getYaml(
-    "content/work/experience.yaml",
+  const experience: WorkExperienceProps[] = parse(
+    getFileContent("content/work/experience.yaml"),
   );
-  const education: EducationProps[] = Retrivers.getYaml(
-    "content/work/education.yaml",
+  const education: EducationProps[] = parse(
+    getFileContent("content/work/education.yaml"),
   );
 
   return {

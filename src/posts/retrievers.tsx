@@ -2,7 +2,6 @@ import fs from "fs";
 import matter from "gray-matter";
 import { PostMetadata } from "@components/PostMetadata";
 import path from "path";
-import { parse } from "yaml";
 
 export default class Retrivers {
   static getPostMetadata(postDirPath: string): PostMetadata[] {
@@ -20,12 +19,5 @@ export default class Retrivers {
     });
 
     return posts;
-  }
-
-  static getYaml(filePath: string) {
-    const fullFilePath = path.join(process.cwd(), filePath);
-    const file = fs.readFileSync(fullFilePath, "utf8");
-
-    return parse(file);
   }
 }
