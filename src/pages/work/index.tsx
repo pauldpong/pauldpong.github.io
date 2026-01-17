@@ -22,7 +22,7 @@ export default function Work({ experience, education }: WorkPageProps) {
           <p className="mb-10">
             Brief overview of my career and education background. You can view
             my full resume{" "}
-            <a className="underline" href="/files/resume-july-2025.pdf">
+            <a className="underline" href="/files/resume.pdf">
               here
             </a>
             .
