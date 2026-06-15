@@ -22,10 +22,7 @@ export default function Notes({ notes }) {
         <Header headerTitle="PAUL'S NOTES" />
         <div className="">
           <p className="pb-10">
-            This page is work in progress.
-            <br />
-            <br />
-            Collection of my notes.
+            Collection of my notes. This page is work in progress.
           </p>
           <ul className="list-disc list-inside">{a}</ul>
         </div>

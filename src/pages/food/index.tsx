@@ -36,12 +36,6 @@ function FoodIndex({ recipes }: FoodIndexProps) {
           ))}
         </ul>
         <br />
-        <h1 className="mb-3 text-3xl">Paul's Favourite Foods</h1>
-        <p></p>
-        <ul className="list-disc list-inside">
-          <li>Tsukemen</li>
-          <li>Sushi</li>
-        </ul>
       </Scaffold>
     </div>
   );
