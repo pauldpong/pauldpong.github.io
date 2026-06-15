@@ -9,8 +9,6 @@ import Scaffold from "components/common/Scaffold";
 import { GetStaticPaths } from "next";
 
 function Note({ title, date, content }) {
-  console.log(content);
-
   return (
     <div>
       <Head>

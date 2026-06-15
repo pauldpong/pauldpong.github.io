@@ -37,8 +37,6 @@ export default function Notes({ notes }) {
 export async function getStaticProps() {
   const notes = Retrivers.getPostMetadata("content/notes");
 
-  console.log(notes);
-
   return {
     props: {
       notes,

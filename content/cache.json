@@ -1,0 +1,78 @@
+{
+  "Calgary, Canada": {
+    "lat": 51.0456064,
+    "lon": -114.057541
+  },
+  "Toronto, Canada": {
+    "lat": 43.6534817,
+    "lon": -79.3839347
+  },
+  "Vancouver, Canada": {
+    "lat": 49.2608724,
+    "lon": -123.113952
+  },
+  "Tokyo, Japan": {
+    "lat": 35.6768601,
+    "lon": 139.7638947
+  },
+  "Kyoto, Japan": {
+    "lat": 35.0115754,
+    "lon": 135.7681441
+  },
+  "Osaka, Japan": {
+    "lat": 34.6937569,
+    "lon": 135.5014539
+  },
+  "Madrid, Spain": {
+    "lat": 40.416782,
+    "lon": -3.703507
+  },
+  "Barcelona, Spain": {
+    "lat": 41.3825802,
+    "lon": 2.177073
+  },
+  "Bangkok, Thailand": {
+    "lat": 13.7524938,
+    "lon": 100.4935089
+  },
+  "Hat Yai, Thailand": {
+    "lat": 7.0074644,
+    "lon": 100.4689889
+  },
+  "Phuket, Thailand": {
+    "lat": 7.9366015,
+    "lon": 98.3529292
+  },
+  "San Francisco, United States": {
+    "lat": 37.7879363,
+    "lon": -122.4075201
+  },
+  "New York, United States": {
+    "lat": 40.7127281,
+    "lon": -74.0060152
+  },
+  "Denver, United States": {
+    "lat": 39.7392364,
+    "lon": -104.984862
+  },
+  "Boston, United States": {
+    "lat": 42.3588336,
+    "lon": -71.0578303
+  },
+  "Washington, United States": {
+    "lat": 38.8950982,
+    "lon": -77.0363849
+  },
+  "Philadelphia, United States": {
+    "lat": 39.9527237,
+    "lon": -75.1635262
+  },
+  "Miami, United States": {
+    "lat": 25.7741566,
+    "lon": -80.1935973
+  },
+  "Los Angeles, United States": {
+    "lat": 34.0536909,
+    "lon": -118.242766
+  }
+}

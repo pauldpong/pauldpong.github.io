@@ -1,8 +1,17 @@
 import Header from "@components/common/Header";
 import Scaffold from "@components/common/Scaffold";
 import Head from "next/head";
+import Link from "next/link";
+import path from "path";
+import fs from "fs";
+import { FrontmatterMetadata } from "data/FrontmatterMetadata";
+import { getFrontmatterMetadata } from "utils/markdown-utils";
 
-export default function Food() {
+interface FoodIndexProps {
+  recipes: FrontmatterMetadata[];
+}
+
+function FoodIndex({ recipes }: FoodIndexProps) {
   return (
     <div>
       <Head>
@@ -10,19 +19,53 @@ export default function Food() {
       </Head>
       <Scaffold>
         <Header headerTitle="PAUL'S FOOD" />
-        <p className="">
-          This page is work in progress.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+        <p className="">This page is work in progress.</p>
+        <br />
+        <h1 className="mb-2 text-3xl">Recipes</h1>
+        <p className="mb-2">
+          Collection of recipes I found online, and put here for easy access
+          when shopping and thinking about what to make.
         </p>
+        <ul className="list-disc list-inside">
+          {recipes.map((receipe) => (
+            <li key={receipe.slug}>
+              <Link href={`/food/recipes/${receipe.slug}`}>
+                <span className="text-xl">{receipe.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <br />
+        <h1 className="mb-3 text-3xl">Paul's Favourite Foods</h1>
+        <p></p>
+        <ul className="list-disc list-inside">
+          <li>Tsukemen</li>
+          <li>Sushi</li>
+        </ul>
       </Scaffold>
     </div>
   );
 }
+
+export async function getStaticProps() {
+  const postDir = path.join(process.cwd(), "content/recipes");
+  const entires = fs.readdirSync(postDir, { withFileTypes: true });
+
+  const markdownFiles = entires
+    .filter((entry) => entry.isFile())
+    .filter((file) => file.name.endsWith(".md"));
+
+  const recipes: FrontmatterMetadata[] = markdownFiles.map((file) => {
+    return getFrontmatterMetadata(`content/recipes/${file.name}`);
+  });
+
+  console.log(recipes);
+
+  return {
+    props: {
+      recipes,
+    },
+  };
+}
+
+export default FoodIndex;

@@ -1,17 +1,43 @@
 import Header from "components/common/Header";
 import Scaffold from "components/common/Scaffold";
 import Head from "next/head";
-import Retrivers from "posts/retrievers";
-import Link from "next/link";
 
-export default function Work({ travels }) {
-  const a = travels.map((travel) => (
-    <li key={travel.slug}>
-      <Link href={`/travels/${travel.slug}`}>
-        <span className="text-xl">{travel.title}</span>
-      </Link>
-    </li>
+import path from "path";
+import fs from "fs";
+import dynamic from "next/dynamic";
+
+import { City } from "@components/ui/WorldMap";
+import ImageCard from "@components/ui/ImageCard";
+import { TravelMetadata } from "data/TravelMetadata";
+import { getTravelMetadata } from "utils/markdown-utils";
+import { GeoCache, loadCache } from "scripts/geo-fetch";
+
+interface TravelIndexProps {
+  travels: TravelMetadata[];
+  cache: GeoCache;
+}
+
+const WorldMap = dynamic(() => import("@components/ui/WorldMap"), {
+  ssr: false,
+});
+
+function TravelIndex({ travels, cache }: TravelIndexProps) {
+  const travelCards = travels.map((travel) => (
+    <ImageCard
+      key={travel.slug}
+      imageSrc={travel.image_url}
+      imageAlt="a"
+      title={travel.title}
+      slug={travel.slug}
+    />
   ));
+
+  const visitedCities = Object.entries(cache).map(
+    ([name, coords]): City => ({
+      name,
+      ...coords,
+    }),
+  );
 
   return (
     <div>
@@ -20,21 +46,19 @@ export default function Work({ travels }) {
       </Head>
       <Scaffold>
         <Header headerTitle="PAUL'S TRAVELS" />
-        <div className="mb-10">
-          This page is work in progress.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+        <div className="mb-5">
+          My travel journal that includes places I have visited, but also lived.
+          I'm writing some of the entries retroactively, so they can be sparse
+          at times. My goal is to look back and store the memories of my
+          travels, as well as have a place to come back to if I forget some of
+          my favorite spots. Hopefully, for others, it can be a small source of
+          inspiration on what to see, what to do, and where to eat.
         </div>
-        <div className="mb-30">
-          <h1 className="mb-3 text-3xl">Frequents</h1>
-          <ul className="list-disc list-inside">{a}</ul>
+        <div className="pb-10">
+          <WorldMap cities={visitedCities} />
+          <div className="pt-10">
+            <div className="grid grid-cols-3 gap-4">{travelCards}</div>
+          </div>
         </div>
       </Scaffold>
     </div>
@@ -42,13 +66,25 @@ export default function Work({ travels }) {
 }
 
 export async function getStaticProps() {
-  const travels = Retrivers.getPostMetadata("content/travels");
+  const postDir = path.join(process.cwd(), "content/travels");
+  const entires = fs.readdirSync(postDir, { withFileTypes: true });
 
-  console.log(travels);
+  const markdownFiles = entires
+    .filter((entry) => entry.isFile())
+    .filter((file) => file.name.endsWith(".md"));
+
+  const publishedTravel: TravelMetadata[] = markdownFiles.map((file) => {
+    return getTravelMetadata(`content/travels/${file.name}`);
+  });
+
+  const cache = loadCache();
 
   return {
     props: {
-      travels,
+      travels: publishedTravel,
+      cache: cache,
     },
   };
 }
+
+export default TravelIndex;

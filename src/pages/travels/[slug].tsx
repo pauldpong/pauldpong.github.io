@@ -1,25 +1,30 @@
-import fs from "fs";
 import matter from "gray-matter";
 import Markdown from "markdown-to-jsx";
 import Header from "components/common/Header";
 import Scaffold from "components/common/Scaffold";
 import Retrivers from "posts/retrievers";
-import Head from "next/head";
+
 import path from "path";
+import fs from "fs";
+import Head from "next/head";
+import { TravelMetadata } from "data/TravelMetadata";
+import { getTravelMetadata } from "utils/markdown-utils";
+import { getFileContent } from "utils/file-utils";
+import { formatDate } from "utils/date-utils";
 
-export default function Travel({ title, date, matterResult }) {
-  console.log(matterResult);
+const contentDirectoryPath = "content/travels";
 
+function Travel({ title, date, matterResult }) {
   return (
     <div>
       <Head>
-        <title>{title} - Paul&apos;s Travels</title>
+        <title>{`${title} - Paul's Travels`}</title>
       </Head>
       <Scaffold>
         <Header headerTitle="PAUL'S TRAVELS" />
         <div className="mb-8">
           <h1 className="mb-3 text-5xl">{title}</h1>
-          <h2 className="italic text-xl">{date}</h2>
+          <h2 className="text-xl">Last Updated: {date}</h2>
         </div>
         <article className="prose max-w-none">
           <Markdown>{matterResult}</Markdown>
@@ -30,9 +35,18 @@ export default function Travel({ title, date, matterResult }) {
 }
 
 export async function getStaticPaths() {
-  const posts = Retrivers.getPostMetadata("content/travels");
+  const postDir = path.join(process.cwd(), "content/travels");
+  const entires = fs.readdirSync(postDir, { withFileTypes: true });
 
-  const paths = posts.map((post) => ({
+  const markdownFiles = entires
+    .filter((entry) => entry.isFile())
+    .filter((file) => file.name.endsWith(".md"));
+
+  const publishedTravel: TravelMetadata[] = markdownFiles.map((file) => {
+    return getTravelMetadata(`content/travels/${file.name}`);
+  });
+
+  const paths = publishedTravel.map((post) => ({
     params: { slug: post.slug },
   }));
 
@@ -40,21 +54,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postDir = path.join(process.cwd(), "content/travels");
+  const file = `${contentDirectoryPath}/${params.slug}.md`;
+  const fileContent = getFileContent(file);
 
-  const file = `${postDir}/${params.slug}.md`;
-  const content = fs.readFileSync(file, "utf8");
-  const m = matter(content);
-  const title = m.data.title;
-  const matterResult = m.content;
+  const matterContent = matter(fileContent);
+  const title = matterContent.data.title;
+  const matterResult = matterContent.content;
 
-  const dateFormatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: "UTC",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  const dateAsFormattedString = dateFormatter.format(new Date(m.data.date));
+  const dateAsFormattedString = formatDate(matterContent.data.last_updated);
 
   return {
     props: {
@@ -64,3 +71,5 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+
+export default Travel;
