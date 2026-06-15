@@ -47,12 +47,12 @@ function TravelIndex({ travels, cache }: TravelIndexProps) {
       <Scaffold>
         <Header headerTitle="PAUL'S TRAVELS" />
         <div className="mb-5">
-          My travel journal that includes places I have visited, but also lived.
+          {`My travel journal that includes places I have visited, but also lived
           I'm writing some of the entries retroactively, so they can be sparse
           at times. My goal is to look back and store the memories of my
           travels, as well as have a place to come back to if I forget some of
           my favorite spots. Hopefully, for others, it can be a small source of
-          inspiration on what to see, what to do, and where to eat.
+          inspiration on what to see, what to do, and where to eat.`}
         </div>
         <div className="pb-10">
           <WorldMap cities={visitedCities} />

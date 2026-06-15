@@ -2,7 +2,6 @@ import matter from "gray-matter";
 import Markdown from "markdown-to-jsx";
 import Header from "components/common/Header";
 import Scaffold from "components/common/Scaffold";
-import Retrivers from "posts/retrievers";
 
 import path from "path";
 import fs from "fs";
