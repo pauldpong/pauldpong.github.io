@@ -29,7 +29,7 @@ function FoodIndex({ recipes }: FoodIndexProps) {
         <ul className="list-disc list-inside">
           {recipes.map((receipe) => (
             <li key={receipe.slug}>
-              <Link href={`/food/recipes/${receipe.slug}`}>
+              <Link href={`/food/${receipe.slug}`}>
                 <span className="text-xl">{receipe.title}</span>
               </Link>
             </li>

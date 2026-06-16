@@ -1,8 +1,11 @@
 import Header from "components/common/Header";
 import Scaffold from "components/common/Scaffold";
-import Retrivers from "posts/retrievers";
 import Link from "next/link";
 import Head from "next/head";
+import path from "path";
+import fs from "fs";
+import { FrontmatterMetadata } from "data/FrontmatterMetadata";
+import { getFrontmatterMetadata } from "utils/markdown-utils";
 
 export default function Notes({ notes }) {
   const a = notes.map((note) => (
@@ -32,7 +35,16 @@ export default function Notes({ notes }) {
 }
 
 export async function getStaticProps() {
-  const notes = Retrivers.getPostMetadata("content/notes");
+  const postDir = path.join(process.cwd(), "content/notes");
+  const entires = fs.readdirSync(postDir, { withFileTypes: true });
+
+  const markdownFiles = entires
+    .filter((entry) => entry.isFile())
+    .filter((file) => file.name.endsWith(".md"));
+
+  const notes: FrontmatterMetadata[] = markdownFiles.map((file) => {
+    return getFrontmatterMetadata(`content/notes/${file.name}`);
+  });
 
   return {
     props: {

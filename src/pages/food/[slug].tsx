@@ -1,12 +1,13 @@
 import fs from "fs";
 import matter from "gray-matter";
 import Markdown from "markdown-to-jsx";
-import Retrivers from "posts/retrievers";
 import path from "path";
 import Header from "components/common/Header";
 import Head from "next/head";
 import Scaffold from "components/common/Scaffold";
 import { formatDate } from "utils/date-utils";
+import { FrontmatterMetadata } from "data/FrontmatterMetadata";
+import { getFrontmatterMetadata } from "utils/markdown-utils";
 
 export default function Recipe({ title, date, content }) {
   return (
@@ -29,10 +30,19 @@ export default function Recipe({ title, date, content }) {
 }
 
 export async function getStaticPaths() {
-  const posts = Retrivers.getPostMetadata("content/recipes");
+  const postDir = path.join(process.cwd(), "content/recipes");
+  const entires = fs.readdirSync(postDir, { withFileTypes: true });
 
-  const paths = posts.map((post) => ({
-    params: { id: post.slug },
+  const markdownFiles = entires
+    .filter((entry) => entry.isFile())
+    .filter((file) => file.name.endsWith(".md"));
+
+  const recipes: FrontmatterMetadata[] = markdownFiles.map((file) => {
+    return getFrontmatterMetadata(`content/recipes/${file.name}`);
+  });
+
+  const paths = recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
   }));
 
   return { paths, fallback: false };
@@ -41,7 +51,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const postDir = path.join(process.cwd(), "content/recipes");
 
-  const file = `${postDir}/${params.id}.md`;
+  const file = `${postDir}/${params.slug}.md`;
   const content = fs.readFileSync(file, "utf8");
   const matterResult = matter(content);
   const title = matterResult.data.title;
